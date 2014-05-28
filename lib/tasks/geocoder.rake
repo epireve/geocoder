@@ -8,7 +8,7 @@ namespace :geocode do
     klass = class_from_string(class_name)
     batch = batch.to_i unless batch.nil?
 
-    klass.not_geocoded.find_each(batch_size: batch) do |obj|
+    klass.not_geocoded.each(batch_size: batch) do |obj|
       obj.geocode; obj.save
       sleep(sleep_timer.to_f) unless sleep_timer.nil?
     end
